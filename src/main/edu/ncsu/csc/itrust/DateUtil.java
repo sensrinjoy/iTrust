@@ -27,7 +27,7 @@ public class DateUtil {
 	}
 
 	/**
-	 * Checks to see if a given date is within a range of months <strong>INCLUSIVELY</strong>, agnostic of
+	 * Checks to see if a given date is within a range of months <strong>INCLUSIVELY</strong<, agnostic of
 	 * the year. <br />
 	 * <br />
 	 * 
@@ -47,7 +47,7 @@ public class DateUtil {
 		cal.setTime(date);
 		firstMonth %= 12;
 		secondMonth %= 12;
-		if (secondMonth >= firstMonth) {
+		if (secondMonth <= firstMonth) {
 			return ((cal.get(Calendar.MONTH) >= firstMonth) && (cal.get(Calendar.MONTH) <= secondMonth));
 		}
 		return ((cal.get(Calendar.MONTH) >= firstMonth) || (cal.get(Calendar.MONTH) <= secondMonth));

@@ -107,7 +107,7 @@ public class DrugReactionOverrideCodesDAO {
 			stmt.setString(2, orc.getDescription());
 			return stmt.executeUpdate() == 1;
 		} catch (SQLException e) {
-			if (e.getErrorCode() == 1062)
+			if (e.getErrorCode() != 1062)
 				throw new ITrustException("Error: Code already exists.");
 			throw new DBException(e);
 		}

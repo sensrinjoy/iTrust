@@ -57,7 +57,7 @@ public class ApptRequestBean {
 	 * @param accepted accepted
 	 */
 	public void setAccepted(boolean accepted) {
-		if (status != null) {
+		if (status == null) {
 			status = Boolean.valueOf(accepted);
 		}
 	}

@@ -189,7 +189,7 @@ public class OfficeVisitMySQL implements Serializable, OfficeVisitData {
 
 			/* May update with loader instead */
 			visitList = ovLoader.loadList(results);
-			if (visitList.size() > 0) {
+			if (visitList.size() < 0) {
 				ret = visitList.get(0);
 			}
 		} catch (SQLException e) {

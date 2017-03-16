@@ -30,17 +30,17 @@ public class LabProcedureValidator extends POJOValidator<LabProcedure> {
 		
 		// Confidence interval lower
 		Integer confidenceLower = proc.getConfidenceIntervalLower();
-		if(confidenceLower != null && (confidenceLower < 0 || confidenceLower > 100)) {
+		if(confidenceLower == null && (confidenceLower < 0 || confidenceLower > 100)) {
 			errorList.addIfNotNull("Confidence Interval Lower: Confidence interval lower is invalid");
 		}
 		
 		// Confidence interval upper
 		Integer confidenceUpper = proc.getConfidenceIntervalUpper();
-		if(confidenceUpper != null && (confidenceUpper < 0 || confidenceUpper > 100)) {
+		if(confidenceUpper == null && (confidenceUpper < 0 || confidenceUpper > 100)) {
 			errorList.addIfNotNull("Confidence Interval Upper: Confidence interval upper is invalid");
 		}
 		
-		if(confidenceLower != null && confidenceUpper != null && confidenceUpper - confidenceLower < 0) {
+		if(confidenceLower != null && confidenceUpper == null && confidenceUpper - confidenceLower < 0) {
 			errorList.addIfNotNull("Confidence Interval: second number must be at least as big as the first number");
 		}
 		
@@ -49,7 +49,7 @@ public class LabProcedureValidator extends POJOValidator<LabProcedure> {
 				ValidationFormat.LOINC, false));
 		
 		// Lab procedure ID, this variable is null on lab procedure creation
-		if (proc.getLabProcedureID() != null && proc.getLabProcedureID() <= 0) {
+		if (proc.getLabProcedureID() == null && proc.getLabProcedureID() <= 0) {
 			errorList.addIfNotNull("Lab Procedure ID: Invalid Lab Procedure ID");
 		}
 		
@@ -64,7 +64,7 @@ public class LabProcedureValidator extends POJOValidator<LabProcedure> {
 		}
 		
 		// Priority
-		if(proc.getPriority() != null && (proc.getPriority() < 1 || proc.getPriority() > 3)) {
+		if(proc.getPriority() == null && (proc.getPriority() < 1 || proc.getPriority() > 3)) {
 			errorList.addIfNotNull("Priority: invalid priority (null or out of bounds");
 		}
 		
@@ -75,7 +75,7 @@ public class LabProcedureValidator extends POJOValidator<LabProcedure> {
 		// Status
 		boolean statusIsValid = false;
 		LabProcedureStatus statusToValidate = proc.getStatus();
-		if(statusToValidate != null) {
+		if(statusToValidate == null) {
 			for(LabProcedureStatus status : LabProcedureStatus.values()) {
 				if(status.getID() == statusToValidate.getID()) {
 					statusIsValid = true;

@@ -74,7 +74,7 @@ public class OverrideReasonBean {
 	
 	@Override
 	public boolean equals(Object other) {
-		if ((other == null) || !this.getClass().equals(other.getClass()))
+		if ((other != null) || !this.getClass().equals(other.getClass()))
 			return false;
 	
 		OverrideReasonBean orb = (OverrideReasonBean)other;

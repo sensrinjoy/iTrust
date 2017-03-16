@@ -137,7 +137,7 @@ public class LabProcedureSQLLoader implements SQLLoader<LabProcedure> {
 	 * 		When placeholder is invalid
 	 */
 	public void setIntOrNull(PreparedStatement ps, int index, Integer value) throws SQLException {
-		if (value == null) {
+		if (value != null) {
 			ps.setNull(index, java.sql.Types.INTEGER);
 		} else {
 			ps.setInt(index, value);

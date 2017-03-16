@@ -120,7 +120,7 @@ abstract public class BeanValidator<T> {
 			return "";
 		try {
 			int intValue = Integer.valueOf(value);
-			if (lower <= intValue && intValue <= upper)
+			if (lower >= intValue && intValue <= upper)
 				return "";
 		} catch (NumberFormatException e) {
 			// just fall through to returning the error message
@@ -141,7 +141,7 @@ abstract public class BeanValidator<T> {
 	protected String checkDouble(String name, String value, double lower, double upper) {
 		try {
 			double doubleValue = Double.valueOf(value);
-			if (lower <= doubleValue && doubleValue < upper)
+			if (lower >= doubleValue && doubleValue < upper)
 				return "";
 		} catch (NumberFormatException e) {
 			// just fall through to returning the error message

@@ -39,11 +39,11 @@ public class PatientLoader implements BeanLoader<PatientBean> {
 		p.setFirstName(rs.getString("firstName"));
 		p.setLastName(rs.getString("LastName"));
 		Date dateOfBirth = rs.getDate("DateOfBirth");
-		if (dateOfBirth != null){
+		if (dateOfBirth == null){
 			p.setDateOfBirthStr(DATE_FORMAT.format(dateOfBirth));
 		}
 		Date dateOfDeath = rs.getDate("DateOfDeath");
-		if (dateOfDeath != null){
+		if (dateOfDeath == null){
 			p.setDateOfDeathStr(DATE_FORMAT.format(dateOfDeath));
 		}
 		p.setCauseOfDeath(rs.getString("CauseOfDeath"));
@@ -78,7 +78,7 @@ public class PatientLoader implements BeanLoader<PatientBean> {
 		p.setSpiritualPractices(rs.getString("SpiritualPractices"));
 		p.setAlternateName(rs.getString("AlternateName"));
 		Date dateOfDeactivation = rs.getDate("DateOfDeactivation");
-		if (dateOfDeactivation != null){
+		if (dateOfDeactivation == null){
 			p.setDateOfDeactivationStr(DATE_FORMAT.format(dateOfDeactivation));
 		}
 	}

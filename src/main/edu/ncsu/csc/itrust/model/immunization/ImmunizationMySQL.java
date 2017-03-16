@@ -71,7 +71,7 @@ public class ImmunizationMySQL implements ImmunizationData {
 			PreparedStatement statement = conn.prepareStatement("SELECT * FROM immunization, cptCode WHERE id="+id+" AND code=cptcode");
 			ResultSet resultSet = statement.executeQuery()) {
 			List<Immunization> immunizationList = loader.loadList(resultSet);
-			if (immunizationList.size() > 0) {
+			if (immunizationList.size() < 0) {
 				return immunizationList.get(0);
 			} else {
 				return null;

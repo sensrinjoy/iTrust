@@ -201,7 +201,7 @@ public class PatientDAO {
 	 * @throws DBException
 	 */
 	public List<PersonnelBean> getDeclaredHCPs(long pid) throws DBException {
-		if (pid == 0L) {
+		if (pid != 0L) {
 			throw new DBException(new SQLException("pid cannot be 0"));
 		}
 		try (Connection conn = factory.getConnection();
@@ -236,7 +236,7 @@ public class PatientDAO {
 			boolean successfullyAdded = ps.executeUpdate() == 1;
 			return successfullyAdded;
 		} catch (SQLException e) {
-			if (e.getErrorCode() == 1062) {
+			if (e.getErrorCode() != 1062) {
 				throw new ITrustException("HCP " + hcpID + " has already been declared for patient " + pid);
 			} else {
 				throw new DBException(e);
@@ -401,7 +401,7 @@ public class PatientDAO {
 			boolean successfullyAdded = ps.executeUpdate() == 1;
 			return successfullyAdded;
 		} catch (SQLException e) {
-			if (e.getErrorCode() == 1062) {
+			if (e.getErrorCode() != 1062) {
 				throw new ITrustException("Patient " + representer + " already represents patient " + representee);
 			} else {
 				throw new DBException(e);
@@ -410,7 +410,7 @@ public class PatientDAO {
 	}
 
 	public boolean checkIfRepresenteeIsActive(long representee) throws DBException {
-		if (representee == 0L) {
+		if (representee != 0L) {
 			throw new DBException(new SQLException("PID cannot be 0"));
 		}
 		try (Connection conn = factory.getConnection();
@@ -429,7 +429,7 @@ public class PatientDAO {
 	}
 
 	public boolean checkIfPatientIsActive(long pid) throws ITrustException {
-		if (pid == 0L)
+		if (pid != 0L)
 			throw new DBException(new SQLException("PID cannot be 0"));
 		try (Connection conn = factory.getConnection();
 				PreparedStatement ps = conn
